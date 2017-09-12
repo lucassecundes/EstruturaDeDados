@@ -1,30 +1,30 @@
 package AulaExercicios;
 
 
-public class Fila {
+public class FilaCircular {
 
     public tipoNo cabeca;
 
-    Fila() {
+    FilaCircular() {
         System.out.println("Criando fila...(construtor fila)");
     }
 
-    public void insereFinal(int info) {
+    public void insereFinalCirculo(int info) {
         if (cabeca == null) {
             cabeca = new tipoNo();
             cabeca.setInfo(info);
-            cabeca.setProx(null);
+            cabeca.setProx(cabeca);
         } else {
             tipoNo aux, novo;
 
             //Caixa Nova
             novo = new tipoNo();
             novo.setInfo(info);
-            novo.setProx(null);
+            novo.setProx(cabeca);
 
             //Indo ate o ultimo			
             aux = cabeca;
-            while (aux.getProx() != null) {
+            while (aux.getProx() != cabeca) {
                 aux = aux.getProx();
             }
 
@@ -35,19 +35,29 @@ public class Fila {
         System.out.println("Elemento " + info + " inserido com sucesso! ");
     }
 
-    public void removeInicio() {
+    public void removeInicioCirculo() {
         if (cabeca != null) {
-            int valor = cabeca.getInfo();
-            System.out.println("Elemento " + valor + " removido com sucesso! ");
-            cabeca = cabeca.getProx();
+            if(cabeca.getProx() == cabeca){
+                cabeca=null;
+            }else{
+                tipoNo aux;
+                aux = cabeca;
+                
+                while(aux.getProx() != cabeca)
+                    aux= aux.getProx();
+                
+                aux.setProx(cabeca.getProx());
+                cabeca = cabeca.getProx();
+                
+            }
         }
     }
 
     public void insereInicio(int info) {
-        if (cabeca == null) {
+        if (cabeca == cabeca) {
             cabeca = new tipoNo();
             cabeca.setInfo(info);
-            cabeca.setProx(null);
+            cabeca.setProx(cabeca);
         } else {
             tipoNo novo;
             novo = new tipoNo();
@@ -59,24 +69,8 @@ public class Fila {
     }
 
     public void removeFinal() {
-            if(cabeca!=null){
-			if(cabeca.getProx()==null){
-				int valor=cabeca.getInfo();
-				System.out.println("Elemento "+valor+" removido com sucesso! ");
-				cabeca = null;
-			}
-			else{
-				tipoNo aux;
-				aux = cabeca;
-				while((aux.getProx()).getProx()!=null)
-					aux=aux.getProx();
-				int valor=(aux.getProx()).getInfo();
-				System.out.println("Elemento "+valor+" removido com sucesso! ");
-				aux.setProx(null);
-			}
-		}
-	}
-    
+
+    }
     public void removenesimo(int n){
         
             //se o cabeca ta nulo
@@ -111,16 +105,11 @@ public class Fila {
         }
         
     }
-    public void imprime() {
-        tipoNo aux = cabeca;
-        System.out.println("Impressao: ");
-        while (aux != null) {
-            System.out.print(aux.getInfo() + " ");
-            aux = aux.getProx();
-        }
-        System.out.println("");
-    }
+    public void imprimeCirculo() {
+        
+        
 
+    }     
     public void menu() {
         int valor, opcao = 0, n;
         System.out.print("\n------------ Menu ------------\n");
@@ -135,11 +124,11 @@ public class Fila {
 
                 case 2: //insereFinal
                     valor = Input.readInt("Valor: ");
-                    insereFinal(valor);
+                    insereFinalCirculo(valor);
                     break;
 
                 case 3: //removeInicio
-                    removeInicio();
+                    removeInicioCirculo();
                     break;
 
                 case 4: //removeFinal
@@ -147,7 +136,7 @@ public class Fila {
                     break;
 
                 case 5: //imprime
-                    imprime();
+                    imprimeCirculo();
                     break;
                
                 case 6: 
