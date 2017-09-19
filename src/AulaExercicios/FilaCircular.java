@@ -37,9 +37,11 @@ public class FilaCircular {
 
     public void removeInicioCirculo() {
         if (cabeca != null) {
+            
             if(cabeca.getProx() == cabeca){
                 cabeca=null;
-            }else{
+            
+           }else{
                 tipoNo aux;
                 aux = cabeca;
                 
@@ -53,23 +55,31 @@ public class FilaCircular {
         }
     }
 
-    public void insereInicio(int info) {
+    public void insereInicioCirculo(int info) {
         if (cabeca == cabeca) {
-            cabeca = new tipoNo();
-            cabeca.setInfo(info);
-            cabeca.setProx(cabeca);
+                cabeca = new tipoNo();
+                cabeca.setInfo(info);
+                cabeca.setProx(cabeca);
+        
         } else {
-            tipoNo novo;
-            novo = new tipoNo();
-            novo.setInfo(info);
-            novo.setProx(cabeca);
-            cabeca = novo;
+                tipoNo novo;
+                novo = new tipoNo();
+                novo.setInfo(info);
+                novo.setProx(cabeca);
+                cabeca = novo;
         }
         System.out.println("Elemento " + info + "inserido");
     }
 
-    public void removeFinal() {
-
+    public void removeFinalCirculo() {
+         if (cabeca != null) {
+            
+            if(cabeca.getProx() == cabeca){
+                cabeca=null;
+            
+                
+            }
+         }
     }
     public void removenesimo(int n){
         
@@ -119,7 +129,7 @@ public class FilaCircular {
 
                 case 1: //insereInicio
                     valor = Input.readInt("Valor: ");
-                    insereInicio(valor);
+                    insereInicioCirculo(valor);
                     break;
 
                 case 2: //insereFinal
