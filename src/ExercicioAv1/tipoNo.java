@@ -1,7 +1,5 @@
 package ExercicioAv1;
 
-import lista1.*;
-
 
 public class tipoNo{
 	public int info;
